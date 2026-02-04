@@ -1,0 +1,8 @@
+{
+  "name": "필드옵스(FieldOps) - 업무 운영 관리 시스템",
+  "description": "본사, 협력사, 현장 기사를 잇는 통합 업무 운영 관리 플랫폼. 접수부터 배정, 작업 증빙, 정산까지 원스톱으로 관리합니다.",
+  "requestFramePermissions": [
+    "camera",
+    "geolocation"
+  ]
+}
