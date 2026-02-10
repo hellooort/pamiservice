@@ -1,7 +1,6 @@
 
 import React, { useState } from 'react';
 import Layout from './components/Layout';
-import Dashboard from './components/Dashboard';
 import AdminOrderList from './components/AdminOrderList';
 import TechnicianView from './components/TechnicianView';
 import LoginPage from './components/LoginPage';
@@ -12,16 +11,11 @@ import ReportDownload from './components/ReportDownload';
 import AccountManagement from './components/AccountManagement';
 import ServiceItemManagement from './components/ServiceItemManagement';
 import PartnerAdminView from './components/PartnerAdminView';
-import SettingsPage from './components/SettingsPage';
 import { UserRole, Order, OrderStatus, Partner, Technician, ServiceItem, User } from './types';
 import { INITIAL_ORDERS, MOCK_PARTNERS, MOCK_TECHNICIANS, MOCK_SERVICE_ITEMS, MOCK_USERS } from './constants';
 import { 
-  LayoutDashboard, 
   FileText, 
-  Users, 
-  Settings, 
   LogOut, 
-  BarChart3, 
   Building2, 
   Package,
   UserCog,
@@ -29,7 +23,7 @@ import {
   Wrench
 } from 'lucide-react';
 
-type AdminTab = 'dashboard' | 'orders' | 'partners' | 'technicians' | 'serviceItems' | 'reports' | 'accounts' | 'settings';
+type AdminTab = 'orders' | 'partners' | 'technicians' | 'serviceItems' | 'reports' | 'accounts';
 
 const App: React.FC = () => {
   // ─── 글로벌 상태 ───
@@ -40,7 +34,7 @@ const App: React.FC = () => {
   const [technicians, setTechnicians] = useState<Technician[]>(MOCK_TECHNICIANS);
   const [serviceItems, setServiceItems] = useState<ServiceItem[]>(MOCK_SERVICE_ITEMS);
   const [users, setUsers] = useState<User[]>(MOCK_USERS);
-  const [activeTab, setActiveTab] = useState<AdminTab>('dashboard');
+  const [activeTab, setActiveTab] = useState<AdminTab>('orders');
   const [showCreateOrder, setShowCreateOrder] = useState(false);
 
   // ─── 핸들러 ───
@@ -108,25 +102,21 @@ const App: React.FC = () => {
 
   // ─── 본사 관리자 / 운영자 뷰 ───
   const sidebarItems: { id: AdminTab; label: string; icon: React.FC<any> }[] = [
-    { id: 'dashboard', label: '종합 대시보드', icon: LayoutDashboard },
     { id: 'orders', label: '업무 운영 관리', icon: FileText },
     { id: 'partners', label: '협력사 관리', icon: Building2 },
     { id: 'technicians', label: '기사 관리', icon: Wrench },
     { id: 'serviceItems', label: '품목/단가 관리', icon: Package },
     { id: 'reports', label: '보고서', icon: Download },
     { id: 'accounts', label: '계정 관리', icon: UserCog },
-    { id: 'settings', label: '설정', icon: Settings },
   ];
 
   const tabLabels: Record<AdminTab, string> = {
-    dashboard: '종합 현황',
     orders: '업무 운영 관리',
     partners: '협력사 관리',
     technicians: '기사 관리',
     serviceItems: '품목/단가 관리',
     reports: '보고서 다운로드',
     accounts: '계정 관리',
-    settings: '설정',
   };
 
   return (
@@ -178,8 +168,6 @@ const App: React.FC = () => {
           </header>
 
           <main className="flex-1 overflow-y-auto p-8 bg-gray-50/50">
-            {activeTab === 'dashboard' && <Dashboard orders={orders} />}
-            
             {activeTab === 'orders' && (
               <>
                 <AdminOrderList 
@@ -231,8 +219,6 @@ const App: React.FC = () => {
                 onCreateUser={(u) => setUsers(prev => [...prev, u])}
               />
             )}
-
-            {activeTab === 'settings' && <SettingsPage />}
           </main>
         </div>
       </div>

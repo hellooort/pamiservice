@@ -26,8 +26,7 @@ const Layout: React.FC<LayoutProps> = ({ children, role, onRoleChange }) => {
             className="bg-slate-800 border-none rounded text-white cursor-pointer px-2 py-0.5 outline-none"
           >
             <option value={UserRole.ADMIN}>관리자 (본사)</option>
-            <option value={UserRole.OPERATOR}>운영자 (실무)</option>
-            <option value={UserRole.PARTNER_ADMIN}>도급 관리자</option>
+            <option value={UserRole.PARTNER_ADMIN}>협력사 관리자</option>
             <option value={UserRole.TECHNICIAN}>현장 기사 (모바일)</option>
           </select>
         </div>
